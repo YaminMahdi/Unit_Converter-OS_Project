@@ -5,8 +5,7 @@
 # Version: v1.0.0
 # Date: 10-04-22
 # Description: This bash script is a Unit Calculator.
-# Usage: myscript <directory_name> <file_name>
-###########################
+#####################################
 # Global variables ##############
 
 # Functions #####################
@@ -276,8 +275,9 @@ function main()
         elif [[ "$t" == "x" ]]; then  
             exit 
         else
-            echo "Wrong Input. Try again. Going back to Home.."
-            sleep 2; clear; main
+            echo "Wrong Input. Try again."
+            read -n 1 -s -r -p "Press any key to go to HOME.."
+            main
         fi
         echo "" 
         ###### end of length################################################################
@@ -332,8 +332,9 @@ function main()
         elif [[ "$t" == "x" ]]; then  
             exit 
         else
-            echo "Wrong Input. Try again. Going back to Home.."
-            sleep 2; clear; main
+            echo "Wrong Input. Try again."
+            read -n 1 -s -r -p "Press any key to go to HOME.."
+            main
         fi
         echo "" 
         ###### end of mass
