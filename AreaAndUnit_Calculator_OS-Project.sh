@@ -50,7 +50,7 @@ function lengthF()
     echo "## a) Kilometer (km)                  ##"
     echo "## b) Meter (m)                       ##"
     echo "## c) Centimeter (cm)                 ##"
-    echo "## d) Milimeter (cm)                  ##"
+    echo "## d) Milimeter (mm)                  ##"
     echo "## e) Mile (mi)                       ##"
     echo "## f) Foot (ft)                       ##"
     echo "## g) Inch (in)                       ##"
@@ -78,7 +78,7 @@ function lengthT()
     echo "## a) Kilometer (km)                  ##"
     echo "## b) Meter (m)                       ##"
     echo "## c) Centimeter (cm)                 ##"
-    echo "## d) Milimeter (cm)                  ##"
+    echo "## d) Milimeter (mm)                  ##"
     echo "## e) Mile (mi)                       ##"
     echo "## f) Foot (ft)                       ##"
     echo "## g) Inch (in)                       ##"
@@ -179,29 +179,27 @@ function main()
         area
         read -r a
         if [[ "$a" == "a" ]]; then
-            read -rp "Enter Length of a Rectangle (meter): " l
-            read -rp "Enter Length of a Rectangle (meter): " w
-            echo "print('Area of Rectangle: ', $l*$w)" | python3
+            read -rp "Enter Length (meter) of side1,2 a Rectangle with space : " -a len 
+            echo "print('Area of Rectangle: ', ${len[0]}*${len[1]})" | python3
         elif [[ "$a" == "b" ]]; then  
-            read -rp "Enter Length of Side-1 of a Triangle (meter): " a
-            read -rp "Enter Length of Side-2 of a Triangle (meter): " b
-            read -rp "Enter Length of Side-3 of a Triangle (meter): " c
-            s=$(echo "print(($a+$b+$c)/2)" | python3)
-            s=$(echo "print($s*($s-$a)*($s-$b)*($s-$c))" | python3)
-            echo -en "\nArea of Triangle = "
-            echo "scale=0; sqrt($s)" | bc | tr '\n' ' '  ############################ a=$(bc <<< "scale=0; sqrt($s)")
-            echo -e "meter^2\n"
+            read -rp "Enter Length (meter) of side1,2,3 a Triangle with space : " -a len 
+            s=$(echo "print((${len[0]}+${len[1]}+${len[2]})/2)" | python3)
+            s=$(echo "print($s*($s-${len[0]})*($s-${len[1]})*($s-${len[2]}))" | python3)
+            echo ""
+            #echo "scale=0; sqrt($s)" | bc | tr '\n' ' '  ########     a=$(bc <<< "scale=0; sqrt($s)")
+            echo "import math; print('Area of Triangle = ', '%.3f' %(math.sqrt($s)) , 'meter^2')" | python3
+            echo "" 
         elif [[ "$a" == "c" ]]; then  
             read -rp "Enter Length of Base-1 of a Trapezoid (meter): " a
             read -rp "Enter Length of Base-2 of a Trapezoid (meter): " b
             read -rp "Enter Length of Hight of a Trapezoid (meter) : " h
             echo ""
-            echo "print('Area of Trapezoid = ',($a+$b)*$h/2,'meter^2')" | python3
+            echo "print('Area of Trapezoid = ','%.3f' %(($a+$b)*$h/2),'meter^2')" | python3
             echo "" 
         elif [[ "$a" == "d" ]]; then  
             read -rp "Enter Length of Radius of a Circle (meter): " r
             echo ""
-            echo "print('Area of Circle = ',$r*$r*3.1416,'meter^2')" | python3
+            echo "print('Area of Circle = ','%.3f' %($r*$r*3.1416),'meter^2')" | python3
             echo "" 
         elif [[ "$a" == "e" ]]; then  
             read -rp "Enter Length of Base of a Parallelogram (meter) : " b
