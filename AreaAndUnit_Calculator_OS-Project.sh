@@ -201,8 +201,6 @@ function main()
             echo "" 
         elif [[ "$a" == "e" ]]; then  
             read -rp "Enter Length (meter) of [Base, Hight] of a Parallelogram with space : " -a len   
-            read -rp "Enter Length of Base of a Parallelogram (meter) : " b
-            read -rp "Enter Length of Hight of a Parallelogram (meter): " h
             echo ""
             echo "print('Area of Parallelogram = ',${len[0]}*${len[1]},'meter^2')" | python3
             echo "" 
