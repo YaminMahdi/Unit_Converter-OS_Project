@@ -179,22 +179,20 @@ function main()
         area
         read -r a
         if [[ "$a" == "a" ]]; then
-            read -rp "Enter Length (meter) of side1,2 a Rectangle with space : " -a len 
+            read -rp "Enter Length (meter) of [side1,2] of a Rectangle with space : " -a len 
             echo "print('Area of Rectangle: ', ${len[0]}*${len[1]})" | python3
         elif [[ "$a" == "b" ]]; then  
-            read -rp "Enter Length (meter) of side1,2,3 a Triangle with space : " -a len 
+            read -rp "Enter Length (meter) of [side1,2,3] of a Triangle with space : " -a len 
             s=$(echo "print((${len[0]}+${len[1]}+${len[2]})/2)" | python3)
             s=$(echo "print($s*($s-${len[0]})*($s-${len[1]})*($s-${len[2]}))" | python3)
             echo ""
             #echo "scale=0; sqrt($s)" | bc | tr '\n' ' '  ########     a=$(bc <<< "scale=0; sqrt($s)")
             echo "import math; print('Area of Triangle = ', '%.3f' %(math.sqrt($s)) , 'meter^2')" | python3
             echo "" 
-        elif [[ "$a" == "c" ]]; then  
-            read -rp "Enter Length of Base-1 of a Trapezoid (meter): " a
-            read -rp "Enter Length of Base-2 of a Trapezoid (meter): " b
-            read -rp "Enter Length of Hight of a Trapezoid (meter) : " h
+        elif [[ "$a" == "c" ]]; then
+            read -rp "Enter Length (meter) of [base1, base2 & Hight] of a Trapezoid with space : " -a len   
             echo ""
-            echo "print('Area of Trapezoid = ','%.3f' %(($a+$b)*$h/2),'meter^2')" | python3
+            echo "print('Area of Trapezoid = ','%.3f' %((${len[0]}+${len[1]})*${len[2]}/2),'meter^2')" | python3
             echo "" 
         elif [[ "$a" == "d" ]]; then  
             read -rp "Enter Length of Radius of a Circle (meter): " r
@@ -202,10 +200,11 @@ function main()
             echo "print('Area of Circle = ','%.3f' %($r*$r*3.1416),'meter^2')" | python3
             echo "" 
         elif [[ "$a" == "e" ]]; then  
+            read -rp "Enter Length (meter) of [Base, Hight] of a Parallelogram with space : " -a len   
             read -rp "Enter Length of Base of a Parallelogram (meter) : " b
             read -rp "Enter Length of Hight of a Parallelogram (meter): " h
             echo ""
-            echo "print('Area of Parallelogram = ',$b*$h,'meter^2')" | python3
+            echo "print('Area of Parallelogram = ',${len[0]}*${len[1]},'meter^2')" | python3
             echo "" 
         elif [[ "$a" == "h" ]]; then 
             main 
